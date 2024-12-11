@@ -1,4 +1,4 @@
-### Markov Model for Cost-Effectiveness Analysis of HP Testing Strategies in Bleeding Peptic Ulcers
+# Markov Model for Cost-Effectiveness Analysis of HP Testing Strategies in Bleeding Peptic Ulcers
 This repository contains a Markov model designed for cost-effectiveness analysis of various Helicobacter pylori (HP) screening strategies in patients with bleeding peptic ulcers. The model evaluates the effectiveness and cost associated with different diagnostic approaches, helping determine the most optimal strategy for identifying HP infection in this patient population.
 
 ## Screening Strategies Evaluated:
