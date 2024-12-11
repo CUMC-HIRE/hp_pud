@@ -969,7 +969,7 @@ res_mod_noninv_17 <- run_model(
 ```
 
 ```{r Define Model 17% HP Non Invasive, UBT vs Sero}
-res_mod_noninv_17iggubt <- run_model(
+res_mod_noninv_17seroubt <- run_model(
     strat_serology = strat_serology,
     strat_ubt = strat_ubt,
     parameters = param,
@@ -985,7 +985,7 @@ res_mod_noninv_17iggubt <- run_model(
 ```
 
 ```{r Define Model 17% HP Non Invasive, SAT vs Sero}
-res_mod_noninv_17iggsat <- run_model(
+res_mod_noninv_17serosat <- run_model(
     strat_stool = strat_stool,
     strat_serology = strat_serology,
     parameters = param,
@@ -1346,14 +1346,14 @@ res_dsa_ubt_17 <- run_dsa(
 )
 ```
 ```{r Run DSA Model 17% HP NonInvasive, SAT vs Sero}
-res_dsa_ubt_17iggsat <- run_dsa(
-    model = res_mod_noninv_17iggsat,
+res_dsa_ubt_17serosat <- run_dsa(
+    model = res_mod_noninv_17serosat,
     dsa = dsa_ubt
 )
 ```
 ```{r Run DSA Model 17% HP NonInvasive, UBT vs Sero}
-res_dsa_ubt_17iggubt <- run_dsa(
-    model = res_mod_noninv_17iggubt,
+res_dsa_ubt_17seroubt <- run_dsa(
+    model = res_mod_noninv_17seroubt,
     dsa = dsa_ubt
 )
 ```
@@ -1397,20 +1397,20 @@ plot_res_dsa_ubt_17
 ```
 ```{r Plot Model 17% HP Strategy, ICER, SAT vs Sero}
 
-plot_res_dsa_ubt_17iggsat <- plot(res_dsa_ubt_17iggsat,
+plot_res_dsa_ubt_17serosat <- plot(res_dsa_ubt_17serosat,
     strategy = "strat_serology",
     result = "icer",
     type = "difference"
 )
-plot_res_dsa_ubt_17iggsat
+plot_res_dsa_ubt_17serosat
 ```
 ```{r Plot Model 17% HP Strategy, ICER, UBT vs Sero}
-plot_res_dsa_ubt_17iggubt <- plot(res_dsa_ubt_17iggubt,
+plot_res_dsa_ubt_17seroubt <- plot(res_dsa_ubt_17seroubt,
     strategy = "strat_ubt",
     result = "icer",
     type = "difference"
 )
-plot_res_dsa_ubt_17iggubt
+plot_res_dsa_ubt_17seroubt
 ```
 
 ```{r Top 10 Variables from Tornado Diagram, UBT vs SAT}
@@ -1430,35 +1430,35 @@ dsa_top_ten
 ```
 ```{r Top 10 Variables from Tornado Diagram, SAT vs Sero}
 # Get the top 10 variables from the tornado diagram.
-dsa_top_teniggsat <- as.character(data.table(
+dsa_top_tenserosat <- as.character(data.table(
     icer_diff = abs(
-        plot_res_dsa_ubt_17iggsat$data$.icer[
-            seq(nrow(plot_res_dsa_ubt_17iggsat$data))[c(TRUE, FALSE)]
-        ] - plot_res_dsa_ubt_17iggsat$data$.icer[
-            seq(nrow(plot_res_dsa_ubt_17iggsat$data))[c(FALSE, TRUE)]
+        plot_res_dsa_ubt_17serosat$data$.icer[
+            seq(nrow(plot_res_dsa_ubt_17serosat$data))[c(TRUE, FALSE)]
+        ] - plot_res_dsa_ubt_17serosat$data$.icer[
+            seq(nrow(plot_res_dsa_ubt_17serosat$data))[c(FALSE, TRUE)]
         ]
     ),
-    variable = plot_res_dsa_ubt_17iggsat$data$.par_names[c(TRUE, FALSE)]
+    variable = plot_res_dsa_ubt_17serosat$data$.par_names[c(TRUE, FALSE)]
 )[order(-icer_diff)][1:10, variable])
 
-dsa_top_teniggsat
+dsa_top_tenserosat
 ```
 
 
 ```{r Top 10 Variables from Tornado Diagram, UBT vs Sero}
 # Get the top 10 variables from the tornado diagram.
-dsa_top_teniggubt <- as.character(data.table(
+dsa_top_tenseroubt <- as.character(data.table(
     icer_diff = abs(
-        plot_res_dsa_ubt_17iggubt$data$.icer[
-            seq(nrow(plot_res_dsa_ubt_17iggubt$data))[c(TRUE, FALSE)]
-        ] - plot_res_dsa_ubt_17iggubt$data$.icer[
-            seq(nrow(plot_res_dsa_ubt_17iggubt$data))[c(FALSE, TRUE)]
+        plot_res_dsa_ubt_17seroubt$data$.icer[
+            seq(nrow(plot_res_dsa_ubt_17seroubt$data))[c(TRUE, FALSE)]
+        ] - plot_res_dsa_ubt_17seroubt$data$.icer[
+            seq(nrow(plot_res_dsa_ubt_17seroubt$data))[c(FALSE, TRUE)]
         ]
     ),
-    variable = plot_res_dsa_ubt_17iggubt$data$.par_names[c(TRUE, FALSE)]
+    variable = plot_res_dsa_ubt_17seroubt$data$.par_names[c(TRUE, FALSE)]
 )[order(-icer_diff)][1:10, variable])
 
-dsa_top_teniggubt
+dsa_top_tenseroubt
 ```
 
 ```{r Trim Top 10 Plot, UBT vs SAT}
@@ -1471,17 +1471,17 @@ plot_res_dsa_ubt_17
 
 ```{r Trim Top 10 Plot, SAT vs Sero}
 # Trim our plot to the top ten most impactful variables.
-plot_res_dsa_ubt_17iggsat$data <- plot_res_dsa_ubt_17iggsat$data[
-    plot_res_dsa_ubt_17iggsat$data$.par_names %in% dsa_top_teniggsat,
+plot_res_dsa_ubt_17serosat$data <- plot_res_dsa_ubt_17serosat$data[
+    plot_res_dsa_ubt_17serosat$data$.par_names %in% dsa_top_tenserosat,
 ]
-plot_res_dsa_ubt_17iggsat
+plot_res_dsa_ubt_17serosat
 ```
 ```{r Trim Top 10 Plot UBT vs Sero}
 # Trim our plot to the top ten most impactful variables.
-plot_res_dsa_ubt_17iggubt$data <- plot_res_dsa_ubt_17iggubt$data[
-    plot_res_dsa_ubt_17iggubt$data$.par_names %in% dsa_top_teniggubt,
+plot_res_dsa_ubt_17seroubt$data <- plot_res_dsa_ubt_17seroubt$data[
+    plot_res_dsa_ubt_17seroubt$data$.par_names %in% dsa_top_tenseroubt,
 ]
-plot_res_dsa_ubt_17iggubt
+plot_res_dsa_ubt_17seroubt
 ```
 
 ```{r Prettify Top 10 Plot UBT vs SAT}
@@ -1545,7 +1545,7 @@ plot_res_dsa_ubt_17$data$.hjust[
 ```
 ```{r Prettify Top 10 Plot SAT vs Sero}
 # Time to prettify the plot.
-plot_res_dsa_ubt_17iggsat$data$.par_names <- plot_res_dsa_ubt_17iggsat$data$.par_names |>
+plot_res_dsa_ubt_17serosat$data$.par_names <- plot_res_dsa_ubt_17serosat$data$.par_names |>
     dplyr::recode(
         c_first_line = "Cost of first-line eradication therapy",
         c_hospital = "Cost of hospitalization, PUD",
@@ -1582,29 +1582,29 @@ plot_res_dsa_ubt_17iggsat$data$.par_names <- plot_res_dsa_ubt_17iggsat$data$.par
         u_pos = "Utility of HP positive state",
         p_reinfect = "HP reinfection rate"
     )
-plot_res_dsa_ubt_17iggsat$data$.strategy_names <- ""
+plot_res_dsa_ubt_17serosat$data$.strategy_names <- ""
 
-plot_res_dsa_ubt_17iggsat$labels$y <- "Parameter"
+plot_res_dsa_ubt_17serosat$labels$y <- "Parameter"
 
-list(plot_res_dsa_ubt_17iggsat$labels)
+list(plot_res_dsa_ubt_17serosat$labels)
 
-plot_res_dsa_ubt_17iggsat +
+plot_res_dsa_ubt_17serosat +
     ggplot2::ggtitle(
         "Figure 1. One-way sensitivity analyses: IgG vs. SAT at prevalence of 17%"
     ) +
     ggplot2::theme(plot.title.position = "plot")
 
-plot_res_dsa_ubt_17iggsat$data$.hjust[
-    plot_res_dsa_ubt_17iggsat$data$.hjust == 0
+plot_res_dsa_ubt_17serosat$data$.hjust[
+    plot_res_dsa_ubt_17serosat$data$.hjust == 0
 ] <- -0.1
 
-plot_res_dsa_ubt_17iggsat$data$.hjust[
-    plot_res_dsa_ubt_17iggsat$data$.hjust == 1
+plot_res_dsa_ubt_17serosat$data$.hjust[
+    plot_res_dsa_ubt_17serosat$data$.hjust == 1
 ] <- 1.1
 ```
 ```{r Prettify Top 10 Plot UBT vs Sero}
 # Time to prettify the plot.
-plot_res_dsa_ubt_17iggubt$data$.par_names <- plot_res_dsa_ubt_17iggubt$data$.par_names |>
+plot_res_dsa_ubt_17seroubt$data$.par_names <- plot_res_dsa_ubt_17seroubt$data$.par_names |>
     dplyr::recode(
         c_first_line = "Cost of first-line eradication therapy",
         c_hospital = "Cost of hospitalization, PUD",
@@ -1641,24 +1641,24 @@ plot_res_dsa_ubt_17iggubt$data$.par_names <- plot_res_dsa_ubt_17iggubt$data$.par
         u_pos = "Utility of HP positive state",
         p_reinfect = "HP reinfection rate"
     )
-plot_res_dsa_ubt_17iggubt$data$.strategy_names <- ""
+plot_res_dsa_ubt_17seroubt$data$.strategy_names <- ""
 
-plot_res_dsa_ubt_17iggubt$labels$y <- "Parameter"
+plot_res_dsa_ubt_17seroubt$labels$y <- "Parameter"
 
-list(plot_res_dsa_ubt_17iggubt$labels)
+list(plot_res_dsa_ubt_17seroubt$labels)
 
-plot_res_dsa_ubt_17iggubt +
+plot_res_dsa_ubt_17seroubt +
     ggplot2::ggtitle(
         "Figure 1. One-way sensitivity analyses: IgG vs. UBT at prevalence of 17%"
     ) +
     ggplot2::theme(plot.title.position = "plot")
 
-plot_res_dsa_ubt_17iggubt$data$.hjust[
-    plot_res_dsa_ubt_17iggsat$data$.hjust == 0
+plot_res_dsa_ubt_17seroubt$data$.hjust[
+    plot_res_dsa_ubt_17serosat$data$.hjust == 0
 ] <- -0.1
 
-plot_res_dsa_ubt_17iggubt$data$.hjust[
-    plot_res_dsa_ubt_17iggubt$data$.hjust == 1
+plot_res_dsa_ubt_17seroubt$data$.hjust[
+    plot_res_dsa_ubt_17seroubt$data$.hjust == 1
 ] <- 1.1
 ```
 
