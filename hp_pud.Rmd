@@ -2,7 +2,7 @@
 title: "HP Bleeding Ulcers Notebook"
 output: html_document
 date: "2024-12-09"
-authors: "Michael Artin, Modified by: Josephine Soddano"
+authors: "Michael Artin, Josephine Soddano"
 ---
 
 ```{r Import Libraries}
