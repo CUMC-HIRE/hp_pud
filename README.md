@@ -9,7 +9,7 @@
 * Serology (Immunoglobulin G)
 
 ## Purpose:
-* The primary objective of this analysis is to assess which HP screening strategy provides the best balance between cost and effectiveness in identifying HP infection in patients with bleeding peptic ulcers.
+* The objective of this analysis is to assess which HP screening strategy is the most cost effective in identifying HP infection in patients with bleeding peptic ulcers.
 
 ## Model Details:
 * Patient Population: The model assumes that patients enter the simulation at age 65 and are followed over a time horizon of 35 years.
