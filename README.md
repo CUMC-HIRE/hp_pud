@@ -2,11 +2,11 @@
 * This repository contains a Markov model designed for cost-effectiveness analysis of various Helicobacter pylori (HP) screening strategies in patients with bleeding peptic ulcers. The model evaluates the effectiveness and cost associated with different diagnostic approaches, helping determine the most optimal strategy for identifying HP infection in this patient population.
 
 ## Screening Strategies Evaluated:
-*Histology
-*Rapid Urease Test
-*Stool Antigen Test
-*Urea Breath Test
-*Serology (Immunoglobulin G)
+* Histology
+* Rapid Urease Test
+* Stool Antigen Test
+* Urea Breath Test
+* Serology (Immunoglobulin G)
 
 ## Purpose:
 * The primary objective of this analysis is to assess which HP screening strategy provides the best balance between cost and effectiveness in identifying HP infection in patients with bleeding peptic ulcers.
